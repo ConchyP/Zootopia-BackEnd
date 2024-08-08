@@ -11,13 +11,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Animals{
+public class Animal{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "animals_type")
-    private AnimalsType animalsType;
+    @Column(name = "animal_type")
+    private AnimalsType animalType;
 
     @Column(name= "specie")
     private String specie;
@@ -31,12 +31,12 @@ public class Animals{
     @Column(name= "date")
     private LocalDate date;
 
-    public Animals() {
+    public Animal() {
     }
 
-    public Animals(Long id, AnimalsType animalsType, String specie, String name, char gender, LocalDate date) {
+    public Animal(Long id, AnimalsType animalsType, String specie, String name, char gender, LocalDate date) {
         this.id = id;
-        this.animalsType = animalsType;
+        this.animalType = animalsType;
         this.specie = specie;
         this.name = name;
         this.gender = gender;
@@ -52,11 +52,11 @@ public class Animals{
     }
 
     public AnimalsType getAnimalsType() {
-        return animalsType;
+        return animalType;
     }
 
     public void setAnimalsType(AnimalsType animalsType) {
-        this.animalsType = animalsType;
+        this.animalType = animalsType;
     }
 
     public String getSpecie() {
