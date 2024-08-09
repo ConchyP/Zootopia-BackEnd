@@ -2,7 +2,8 @@ package org.factzoopia.zootopia.models;
 
 import java.time.LocalDate;
 
-import org.factzoopia.zootopia.models.enums.AnimalsType;
+import org.factzoopia.zootopia.models.enums.AnimalType;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ public class Animal{
     private Long id;
 
     @Column(name = "animal_type")
-    private AnimalsType animalType;
+    private AnimalType animalType;
 
     @Column(name= "specie")
     private String specie;
@@ -34,7 +35,7 @@ public class Animal{
     public Animal() {
     }
 
-    public Animal(Long id, AnimalsType animalsType, String specie, String name, char gender, LocalDate date) {
+    public Animal(Long id, AnimalType animalsType, String specie, String name, char gender, LocalDate date) {
         this.id = id;
         this.animalType = animalsType;
         this.specie = specie;
@@ -51,11 +52,11 @@ public class Animal{
         this.id = id;
     }
 
-    public AnimalsType getAnimalsType() {
+    public AnimalType getAnimalsType() {
         return animalType;
     }
 
-    public void setAnimalsType(AnimalsType animalsType) {
+    public void setAnimalsType(AnimalType animalsType) {
         this.animalType = animalsType;
     }
 
