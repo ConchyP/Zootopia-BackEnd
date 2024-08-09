@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,13 +46,13 @@ public class AnimalController {
     }
 
     @PostMapping
-    public ResponseEntity<Animal> createAnimal(@AnimalBody Animal animal) {
+    public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
         Animal createdAnimal = animalService.createAnimals(animal);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAnimal);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Animal> uptadeAnimal(@AnimalBody Animal animal, @PathVariable Long id) {
+    public ResponseEntity<Animal> uptadeAnimal(@RequestBody Animal animal, @PathVariable Long id) {
         animal.setId(id);
         Animal updateAnimal = animalService.updateAnimal(animal);
         return ResponseEntity.ok(updateAnimal);
