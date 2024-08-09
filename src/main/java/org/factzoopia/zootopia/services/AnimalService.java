@@ -32,10 +32,11 @@ public class AnimalService {
         return repository.save(animals);
     }
 
-    public void deleteAnimalBy(Long id) {
+    public void deleteAnimalById(Long id) {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Animal not found");
         }
+        repository.deleteById(id);
     }
 
 }
