@@ -43,7 +43,7 @@ public class AnimalController {
         return null;
     }
 
-    @PostMapping
+    @PostMapping(path = "/{id}")
     public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
         Animal createdAnimal = animalService.createAnimals(animal);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAnimal);
