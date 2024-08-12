@@ -36,7 +36,7 @@ public class AnimalController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable Long id) {
-        Animal animal = animalService.getAnimalsById(id);
+        Animal animal = animalService.getAnimalById(id);
         if (animal != null) {
             return ResponseEntity.notFound().build();
         }
@@ -45,7 +45,7 @@ public class AnimalController {
 
     @PostMapping(path = "/{id}")
     public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
-        Animal createdAnimal = animalService.createAnimals(animal);
+        Animal createdAnimal = animalService.createAnimal(animal);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAnimal);
     }
 
