@@ -7,6 +7,8 @@ import org.factzoopia.zootopia.models.enums.AnimalType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,9 +19,11 @@ import jakarta.persistence.Table;
 public class Animal{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "animal_type")
+    @Enumerated(EnumType.STRING)
     private AnimalType animalType;
 
     @Column(name= "specie")
