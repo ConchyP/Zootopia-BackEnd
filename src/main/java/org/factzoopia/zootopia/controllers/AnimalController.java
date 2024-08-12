@@ -7,7 +7,7 @@ import org.factzoopia.zootopia.services.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+// import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "${api-endpoint}/animals")
-@CrossOrigin(origins = "", allowedHeaders = "*") // Cors en este proyecto no se si va igual. Faltaria la URL
+@RequestMapping(path = "${api-endpoint}/animals") 
+// @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
 
 public class AnimalController {
 
@@ -38,7 +38,7 @@ public class AnimalController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable Long id) {
-        Animal animal = animalService.getAnimalsById(id);
+        Animal animal = animalService.getAnimalById(id);
         if (animal != null) {
             return ResponseEntity.notFound().build();
         }
@@ -47,12 +47,12 @@ public class AnimalController {
 
     @PostMapping
     public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
-        Animal createdAnimal = animalService.createAnimals(animal);
+        Animal createdAnimal = animalService.createAnimal(animal); ///Animals
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAnimal);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Animal> uptadeAnimal(@RequestBody Animal animal, @PathVariable Long id) {
+    public ResponseEntity<Animal> uptadeAnimal(@PathVariable Animal animal, @PathVariable Long id) {
         animal.setId(id);
         Animal updateAnimal = animalService.updateAnimal(animal);
         return ResponseEntity.ok(updateAnimal);

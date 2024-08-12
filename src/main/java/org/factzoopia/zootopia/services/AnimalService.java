@@ -18,19 +18,19 @@ public class AnimalService {
         return repository.findAll();
     }
 
-    public Animal getAnimalsById(Long id) {
+    public Animal getAnimalById(Long id) {
         return repository.findById(id).orElseThrow(() -> new AnimalsNotFoundException("Animal not found"));
     }
 
-    public Animal createAnimals(Animal animals) {
-        return repository.save(animals);
+    public Animal createAnimal(Animal animal) {
+        return repository.save(animal);
     }
 
-    public Animal updateAnimal(Animal animals) {
-        if (!repository.existsById(animals.getId())) {
+    public Animal updateAnimal(Animal animal) {
+        if (!repository.existsById(animal.getId())) {
             throw new AnimalsNotFoundException("Animal not found");
         }
-        return repository.save(animals);
+        return repository.save(animal);
     }
 
     public void deleteAnimalById(Long id) {
