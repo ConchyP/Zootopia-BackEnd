@@ -1,6 +1,8 @@
 package org.factzoopia.zootopia.config;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +12,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
@@ -37,7 +42,6 @@ public class Config {
                 )
           .authorizeHttpRequests(auth -> auth
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-            .requestMatchers(HttpMethod.GET, endpoint + "/animals").hasAnyRole("USER","ADMIN")
             .requestMatchers(HttpMethod.POST, endpoint + "/animals").hasRole("ADMIN")
             .anyRequest().authenticated())
             .httpBasic(Customizer.withDefaults())
@@ -58,6 +62,19 @@ CorsConfigurationSource corsConfigurationSource() {
 	return source;
 }
 
+@Bean
+InMemoryUserDetailsManager inMemoryUserDetailsManager() {
 
+    UserDetails admin = User.builder()
+        .username("flashTheRapidash")
+        .password("{bcrypt}$2a$12$CpLpmTSK3LqKcVcD/wJaj.URGybXR0fCtLnNynPvwlNQDJT8NGH.O")
+        .roles("ADMIN")
+        .build();
 
+        Collection<UserDetails> userDetails = new ArrayList<>();
+
+        userDetails.add(admin);
+
+    return new InMemoryUserDetailsManager(userDetails);  
+}
 }
