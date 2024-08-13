@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.factzoopia.zootopia.exceptions.AnimalsNotFoundException;
 import org.factzoopia.zootopia.models.Animal;
+import org.factzoopia.zootopia.models.enums.AnimalType;
 import org.factzoopia.zootopia.repositories.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,8 +41,12 @@ public class AnimalService {
         repository.deleteById(id);
     }
     
-    public long countAnimals() { 
-        return repository.count(); 
+    public long countAnimals() {
+        return repository.count();
+    }
+
+    public long countAnimalsByAnimalType(AnimalType animalType) {
+        return repository.countByAnimalType(animalType);
     }
 
 }
