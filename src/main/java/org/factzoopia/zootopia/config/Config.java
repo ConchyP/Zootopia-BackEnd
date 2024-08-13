@@ -36,15 +36,14 @@ public class Config {
                 .deleteCookies("JSESSIONID")
                 )
           .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                        .requestMatchers(HttpMethod.GET, endpoint + "/countries").hasAnyRole("USER","ADMIN")
-                        .requestMatchers(HttpMethod.POST, endpoint + "/countries").hasRole("ADMIN")
-                        .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
+            .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+            .requestMatchers(HttpMethod.GET, endpoint + "/animals").hasAnyRole("USER","ADMIN")
+            .requestMatchers(HttpMethod.POST, endpoint + "/animals").hasRole("ADMIN")
+            .anyRequest().authenticated())
+            .httpBasic(Customizer.withDefaults())
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
         http.headers(header -> header.frameOptions(frame -> frame.sameOrigin()));
-
         return http.build();
     }
     
@@ -58,4 +57,7 @@ CorsConfigurationSource corsConfigurationSource() {
 	source.registerCorsConfiguration("/**", configuration);
 	return source;
 }
+
+
+
 }
