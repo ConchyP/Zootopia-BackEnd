@@ -39,5 +39,9 @@ public class AnimalService {
         }
         repository.deleteById(id);
     }
+    
+    public long countAnimals() { 
+        return repository.count(); 
+    }
 
 }
