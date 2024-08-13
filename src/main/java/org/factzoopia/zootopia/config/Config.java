@@ -26,7 +26,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 public class Config {
 
-    @Value("${api-endpoint}" ) //api/v1
+    @Value("${api-endpoint}" ) // localhost:8080/api/v1
     String endpoint;
 
 
@@ -37,7 +37,7 @@ public class Config {
             .csrf(csrf -> csrf.disable())
             .formLogin(form -> form.disable())
             .logout(out -> out
-                .logoutUrl(endpoint + "/logout")
+                .logoutUrl(endpoint + "/logout") // localhost:8080/api/v1/logout
                 .deleteCookies("JSESSIONID")
                 )
           .authorizeHttpRequests(auth -> auth
@@ -67,7 +67,7 @@ InMemoryUserDetailsManager inMemoryUserDetailsManager() {
 
     UserDetails admin = User.builder()
         .username("flashTheRapidash")
-        .password("{bcrypt}$2a$12$CpLpmTSK3LqKcVcD/wJaj.URGybXR0fCtLnNynPvwlNQDJT8NGH.O")
+        .password("{bcrypt}$2a$12$CpLpmTSK3LqKcVcD/wJaj.URGybXR0fCtLnNynPvwlNQDJT8NGH.O") //password
         .roles("ADMIN")
         .build();
 
