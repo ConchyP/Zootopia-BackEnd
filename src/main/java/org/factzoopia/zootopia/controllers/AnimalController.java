@@ -78,4 +78,10 @@ public class AnimalController {
         return ResponseEntity.ok(count);
     }
 
+    @GetMapping(path = "/type/{animalType}")
+     public ResponseEntity<List<Animal>> getAnimalsByType(@PathVariable AnimalType animalType) {
+         List<Animal> animals = animalService.getAnimalsByType(animalType);
+          return ResponseEntity.ok(animals); 
+        }
+
 }
