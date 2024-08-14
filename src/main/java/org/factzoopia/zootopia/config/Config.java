@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.factzoopia.zootopia.services.JpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,13 @@ public class Config {
     @Value("${api-endpoint}" ) // localhost:8080/api/v1
     String endpoint;
 
+    JpaUserDetailsService jpaUserDetailsService;
+
+    public Config(JpaUserDetailsService jpaUserDetailsService) {
+            this.jpaUserDetailsService = jpaUserDetailsService;
+    }
+
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -44,6 +52,7 @@ public class Config {
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/animals").hasRole("ADMIN")
             .anyRequest().authenticated())
+            .userDetailsService(jpaUserDetailsService)
             .httpBasic(Customizer.withDefaults())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
@@ -76,5 +85,5 @@ InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         userDetails.add(admin);
 
     return new InMemoryUserDetailsManager(userDetails);  
-}
+} 
 }
