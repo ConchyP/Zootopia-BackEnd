@@ -49,4 +49,8 @@ public class AnimalService {
         return repository.countByAnimalType(animalType);
     }
 
+    public List<Animal> getAnimalsByType(AnimalType animalType) { 
+        return repository.findByAnimalType(animalType); 
+    }
+
 }
