@@ -1,7 +1,6 @@
 package org.factzoopia.zootopia.config;
 
 import java.util.Arrays;
-
 import org.factzoopia.zootopia.services.JpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-
 public class Config {
 
     @Value("${api-endpoint}") // localhost:8080/api/v1
