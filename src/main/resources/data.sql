@@ -9,5 +9,5 @@ VALUES ('Feline', 'Lion', 'Bad', 'M', '2023-08-09');
 
 /* ADMIN TABLE */
 
-INSERT INTO admins (email, password, role) VALUES ('flash@gmail.com', '{bcrypt}$2a$12$CpLpmTSK3LqKcVcD/wJaj.URGybXR0fCtLnNynPvwlNQDJT8NGH.O', 'ROLE_ADMIN');
+INSERT INTO admins (email, password, role) VALUES ('flash@gmail.com', '$2a$12$CpLpmTSK3LqKcVcD/wJaj.URGybXR0fCtLnNynPvwlNQDJT8NGH.O', 'ROLE_ADMIN');
 
